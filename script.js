@@ -46,48 +46,58 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentImageIndex = 0;
     let imageSources = [];
 
-    function updateGallery() {
-        imageSources = [];
-        galleryItems.forEach(function(item) {
-            const img = item.querySelector('img');
-            const card = item.closest('.project-card');
-            if(img && !card.classList.contains('hidden-project')) {
-                if(!imageSources.includes(img.src)) {
-                    imageSources.push(img.src);
-                }
-            }
-        });
-    }
-    updateGallery();
+    // Collect all image paths so we can cycle through them
+    galleryItems.forEach(function(item) {
+        const img = item.querySelector('img');
+        if (img && img.src) {
+            imageSources.push(img.src);
+        }
+    });
 
-    galleryItems.forEach(function(item, index) {
+    // Open Lightbox when an image is clicked
+    galleryItems.forEach(function(item) {
         item.addEventListener('click', function(e) {
+            // Prevent opening if clicking a text link inside
+            if(e.target.tagName === 'A') return;
+
             const img = item.querySelector('img');
-            updateGallery();
+            if (!img) return;
+
+            // Find the exact image we clicked
             currentImageIndex = imageSources.indexOf(img.src);
+            
+            // Load just THIS image into the viewer
             lightboxImg.src = imageSources[currentImageIndex];
             lightbox.classList.add('active');
         });
     });
 
+    // Close Lightbox
     closeBtn.addEventListener('click', function() {
         lightbox.classList.remove('active');
+        // Clear the src so the old image doesn't flash on screen next time
+        lightboxImg.src = ''; 
     });
 
+    // Next Image
     nextBtn.addEventListener('click', function() {
         currentImageIndex = (currentImageIndex + 1) % imageSources.length;
         lightboxImg.src = imageSources[currentImageIndex];
     });
 
+    // Previous Image
     prevBtn.addEventListener('click', function() {
         currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
         lightboxImg.src = imageSources[currentImageIndex];
     });
 
+    // Keyboard Controls (Arrows & Escape)
     document.addEventListener('keydown', function(e) {
-        if (!lightbox.classList.contains('active')) return;
+        if (!lightbox.classList.contains('active')) return; // Only run if lightbox is open
+        
         if (e.key === 'Escape') {
             lightbox.classList.remove('active');
+            lightboxImg.src = '';
         } 
         else if (e.key === 'ArrowRight') {
             currentImageIndex = (currentImageIndex + 1) % imageSources.length;
@@ -99,9 +109,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Close if user clicks the dark background (but not the image itself)
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox) {
             lightbox.classList.remove('active');
+            lightboxImg.src = '';
         }
     });
 
