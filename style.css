@@ -11,9 +11,10 @@ html {
 
 body {
     font-family: 'Space Grotesk', sans-serif;
-    background-color: #050505; /* Very dark grey/black */
+    background-color: #050505;
     color: #d0d0d0;
     overflow-x: hidden;
+    cursor: auto;
 }
 
 ::selection {
@@ -21,7 +22,7 @@ body {
     color: #000000;
 }
 
-/* ================= ANIMATED BACKGROUND (Figma Style Dots) ================= */
+/* ================= ANIMATED BACKGROUND ================= */
 .grid-bg {
     position: fixed;
     top: 0;
@@ -67,7 +68,7 @@ body {
 }
 
 .logo {
-    font-family: 'JetBrains Mono', monospace; /* Coding font for logo */
+    font-family: 'JetBrains Mono', monospace;
     font-size: 1.2rem;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -169,7 +170,6 @@ body {
     line-height: 1.5;
 }
 
-/* Dev Stats Bar */
 .dev-stats {
     display: flex;
     align-items: center;
@@ -204,7 +204,6 @@ body {
     background: #222;
 }
 
-/* Hero Image */
 .hero-image-container {
     position: relative;
     width: 450px;
@@ -217,7 +216,7 @@ body {
     object-fit: cover;
     border-radius: 0;
     border: 2px solid #1a1a1a;
-    filter: grayscale(20%) contrast(110%); /* Keep UI colors mostly intact but punchy */
+    filter: grayscale(20%) contrast(110%);
 }
 
 .terminal-tag {
@@ -270,15 +269,6 @@ body {
     color: #fff;
 }
 
-.code-text {
-    font-family: 'JetBrains Mono', monospace;
-    color: #fff;
-    background: #222;
-    padding: 2px 6px;
-    font-size: 1rem;
-    border-radius: 4px;
-}
-
 /* ================= LIBRARY / PROJECTS ================= */
 .project-grid {
     display: grid;
@@ -306,6 +296,7 @@ body {
     height: 280px;
     border-bottom: 1px solid #1a1a1a;
     position: relative;
+    cursor: pointer; /* Shows it's clickable */
 }
 
 .project-img {
@@ -349,21 +340,32 @@ body {
     margin-bottom: 20px;
 }
 
-.project-link {
-    color: #fff;
-    text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 2px;
-    transition: color 0.3s ease, border-color 0.3s ease;
+/* ================= LOAD MORE SYSTEM ================= */
+.hidden-project {
+    display: none;
 }
 
-.project-link:hover {
-    color: #888;
-    border-color: #888;
+.project-card.visible {
+    display: block;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.load-more-wrapper {
+    text-align: center;
+    margin-top: 60px;
+}
+
+#loadMoreBtn {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+#loadMoreBtn.hidden {
+    display: none;
 }
 
 /* ================= CONTACT SECTION ================= */
@@ -415,6 +417,7 @@ body {
     text-transform: uppercase;
     transition: all 0.2s ease-in-out;
     border: 1px solid transparent;
+    cursor: pointer;
 }
 
 .btn-primary {
@@ -457,65 +460,9 @@ body {
     box-shadow: 4px 4px 0 #ffffff;
 }
 
-/* ================= FOOTER ================= */
-footer {
-    text-align: center;
-    padding: 40px;
-    border-top: 1px solid #1a1a1a;
-    color: #444;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
-    position: relative;
-    z-index: 2;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(5px);
-}
-
-/* ================= ANIMATION CLASSES ================= */
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 900px) {
-    .hero {
-        flex-direction: column-reverse;
-        justify-content: center;
-        padding-top: 120px;
-        text-align: center;
-        gap: 80px;
-    }
-    .hero-buttons {
-        justify-content: center;
-    }
-    .dev-stats {
-        justify-content: center;
-        margin: 0 auto;
-    }
-    .hero-image-container {
-        width: 300px;
-        height: 300px;
-    }
-    .hero-content h1 {
-        font-size: 3.5rem;
-    }
-    .section-title {
-        font-size: 2rem;
-    }
-}
-/* ================= FULLSCREEN LIGHTBOX GALLERY ================= */
+/* ================= FULLSCREEN LIGHTBOX ================= */
 .lightbox {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -530,7 +477,7 @@ footer {
 }
 
 .lightbox.active {
-    display: flex; /* Shows when clicked */
+    display: flex;
     animation: fadeIn 0.3s ease;
 }
 
@@ -606,36 +553,59 @@ footer {
     letter-spacing: 1px;
 }
 
-/* Cursor pointer on clickable UI images */
-.gallery-item {
-    cursor: pointer !important;
-}
-/* ================= LOAD MORE SYSTEM ================= */
-.hidden-project {
-    display: none; /* Hidden until button is clicked */
-}
-
-/* When JS reveals them, make them pop in nicely */
-.project-card.visible {
-    display: block;
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.load-more-wrapper {
+/* ================= FOOTER ================= */
+footer {
     text-align: center;
-    margin-top: 60px;
-}
-
-#loadMoreBtn {
+    padding: 40px;
+    border-top: 1px solid #1a1a1a;
+    color: #444;
     font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
 }
 
-/* Hide button when there are no more projects */
-#loadMoreBtn.hidden {
-    display: none;
+/* ================= ANIMATION CLASSES ================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column-reverse;
+        justify-content: center;
+        padding-top: 120px;
+        text-align: center;
+        gap: 80px;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+    .dev-stats {
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .hero-image-container {
+        width: 300px;
+        height: 300px;
+    }
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
 }
