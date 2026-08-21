@@ -610,3 +610,32 @@ footer {
 .gallery-item {
     cursor: pointer !important;
 }
+/* ================= LOAD MORE SYSTEM ================= */
+.hidden-project {
+    display: none; /* Hidden until button is clicked */
+}
+
+/* When JS reveals them, make them pop in nicely */
+.project-card.visible {
+    display: block;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.load-more-wrapper {
+    text-align: center;
+    margin-top: 60px;
+}
+
+#loadMoreBtn {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Hide button when there are no more projects */
+#loadMoreBtn.hidden {
+    display: none;
+}
