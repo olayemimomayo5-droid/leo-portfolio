@@ -11,18 +11,18 @@ html {
 
 body {
     font-family: 'Space Grotesk', sans-serif;
-    background-color: #050505;
+    background-color: #000000;
     color: #e0e0e0;
     overflow-x: hidden;
     cursor: auto;
 }
 
 ::selection {
-    background: #00ff9d;
+    background: #ffffff;
     color: #000000;
 }
 
-/* ================= ANIMATED BG ================= */
+/* ================= ANIMATED BACKGROUND ================= */
 .grid-bg {
     position: fixed;
     top: 0;
@@ -30,28 +30,24 @@ body {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background-image: 
-        linear-gradient(to right, rgba(0, 255, 157, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
+    background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+    background-size: 30px 30px;
     animation: grid-pan 20s linear infinite;
 }
 
 @keyframes grid-pan {
     0% { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
+    100% { background-position: 30px 30px; }
 }
 
-/* Glowing purple orb in the top left */
 .grid-glow {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(82, 0, 255, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(0, 255, 157, 0.1) 0%, transparent 40%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 1000px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(0,0,0,0) 70%);
     z-index: -1;
     pointer-events: none;
 }
@@ -62,9 +58,9 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: rgba(5, 5, 5, 0.8);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #1a1a1a;
     position: fixed;
     width: 100%;
     top: 0;
@@ -78,12 +74,11 @@ body {
     text-transform: uppercase;
     color: #fff;
     font-weight: 700;
-    text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
 }
 
 .cursor-blink {
     animation: blink 1s step-end infinite;
-    color: #00ff9d;
+    color: #fff;
 }
 
 @keyframes blink {
@@ -104,26 +99,24 @@ body {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: all 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-    color: #00ff9d;
-    text-shadow: 0 0 10px rgba(0, 255, 157, 0.8);
+    color: #fff;
 }
 
 .nav-links .nav-cta {
     padding: 10px 24px;
-    border: 1px solid rgba(0, 255, 157, 0.3);
-    color: #00ff9d;
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-    transition: all 0.3s ease;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 4px;
 }
 
 .nav-links .nav-cta:hover {
-    background: #00ff9d;
+    background: #fff;
     color: #000;
-    box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+    border-color: #fff;
 }
 
 /* ================= HERO SECTION ================= */
@@ -141,14 +134,14 @@ body {
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background: rgba(0, 255, 157, 0.05);
-    border: 1px solid rgba(0, 255, 157, 0.2);
+    background: transparent;
+    border: 1px solid #333;
+    border-radius: 4px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
-    color: #00ff9d;
+    color: #ccc;
     margin-bottom: 24px;
     font-weight: 600;
-    border-radius: 4px;
 }
 
 .hero-content h1 {
@@ -163,9 +156,12 @@ body {
 
 .outline-text {
     color: transparent;
-    -webkit-text-stroke: 2px #00ff9d;
-    text-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+    -webkit-text-stroke: 1px #ffffff;
     transition: all 0.3s ease;
+}
+
+.outline-text:hover {
+    color: #ffffff;
 }
 
 .hero-content p {
@@ -174,8 +170,6 @@ body {
     margin-bottom: 40px;
     max-width: 500px;
     line-height: 1.5;
-    border-left: 2px solid #5200ff;
-    padding-left: 20px;
 }
 
 .dev-stats {
@@ -183,8 +177,8 @@ body {
     align-items: center;
     gap: 20px;
     padding: 20px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
     max-width: 480px;
 }
 
@@ -196,8 +190,7 @@ body {
 .stat-num {
     font-family: 'Archivo Black', sans-serif;
     font-size: 1.8rem;
-    color: #00ff9d;
-    text-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+    color: #fff;
 }
 
 .stat-label {
@@ -210,10 +203,9 @@ body {
 .stat-divider {
     width: 1px;
     height: 30px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #1a1a1a;
 }
 
-/* Hero Image with Cyberpunk clip */
 .hero-image-container {
     position: relative;
     width: 450px;
@@ -224,47 +216,46 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 1px solid rgba(0, 255, 157, 0.3);
-    filter: grayscale(20%) contrast(110%);
-    box-shadow: 0 0 50px rgba(82, 0, 255, 0.2);
-    clip-path: polygon(25px 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%, 0 25px);
+    border-radius: 8px;
+    border: 1px solid #1a1a1a;
+    filter: grayscale(30%) contrast(110%);
+    transition: filter 0.4s ease;
+}
+
+.hero-image-container:hover .hero-img {
+    filter: grayscale(0%) contrast(100%);
 }
 
 .terminal-tag {
     position: absolute;
-    bottom: -20px;
-    left: -20px;
+    bottom: -15px;
+    left: -15px;
     background: #000;
-    border: 1px solid rgba(82, 0, 255, 0.5);
+    border: 1px solid #333;
     padding: 8px 16px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
     color: #fff;
-    box-shadow: 0 0 20px rgba(82, 0, 255, 0.2);
+    border-radius: 4px;
 }
 
 /* ================= SECTIONS GENERAL ================= */
 .section-title {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     text-align: left;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     margin-bottom: 60px;
-    font-weight: 900;
+    font-weight: 700;
     letter-spacing: -1px;
     text-transform: uppercase;
     color: #fff;
-}
-
-.section-title .outline-text {
-    -webkit-text-stroke: 2px #5200ff;
-    text-shadow: 0 0 20px rgba(82, 0, 255, 0.3);
 }
 
 #about, #library, #contact {
     padding: 120px 60px;
     position: relative;
     z-index: 2;
-    border-top: 1px solid rgba(0, 255, 157, 0.1);
+    border-top: 1px solid #1a1a1a;
 }
 
 /* ================= ABOUT SECTION ================= */
@@ -272,14 +263,14 @@ body {
     max-width: 900px;
     margin: 0 auto;
     padding: 50px;
-    background: rgba(10, 10, 10, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid #1a1a1a;
+    border-radius: 8px;
     text-align: left;
     font-size: 1.3rem;
     line-height: 1.6;
     color: #999;
-    backdrop-filter: blur(10px);
-    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+    backdrop-filter: blur(5px);
 }
 
 .about-card strong {
@@ -296,37 +287,18 @@ body {
 }
 
 .project-card {
-    background: rgba(10, 10, 10, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(5, 5, 5, 0.8);
+    border: 1px solid #1a1a1a;
+    border-radius: 8px;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-    position: relative;
-    /* Clipped techwear corners */
-    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
-}
-
-.project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, transparent 60%, rgba(0, 255, 157, 0.1) 100%);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 2;
-}
-
-.project-card:hover::before {
-    opacity: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(5px);
 }
 
 .project-card:hover {
-    border-color: rgba(0, 255, 157, 0.3);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(0, 255, 157, 0.1);
+    border-color: #333;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
 }
 
 .project-img-wrapper {
@@ -334,13 +306,14 @@ body {
     height: 280px;
     position: relative;
     cursor: pointer;
+    border-bottom: 1px solid #1a1a1a;
 }
 
 .project-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(50%) brightness(0.7);
+    filter: grayscale(40%) brightness(0.8);
     transition: transform 0.6s ease, filter 0.4s ease;
 }
 
@@ -354,11 +327,11 @@ body {
     top: 15px;
     right: 15px;
     background: rgba(0, 0, 0, 0.9);
-    color: #00ff9d;
+    color: #fff;
     padding: 5px 10px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
-    border: 1px solid rgba(0, 255, 157, 0.3);
+    border: 1px solid #333;
     border-radius: 4px;
     backdrop-filter: blur(4px);
     z-index: 3;
@@ -416,11 +389,10 @@ body {
     max-width: 700px;
     margin: 0 auto;
     padding: 60px;
-    background: rgba(10, 10, 10, 0.6);
-    border: 1px solid rgba(82, 0, 255, 0.2);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 50px rgba(82, 0, 255, 0.05);
-    clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid #1a1a1a;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
 }
 
 .contact-card h2 {
@@ -430,10 +402,6 @@ body {
     color: #fff;
     text-transform: uppercase;
     letter-spacing: -1px;
-}
-
-.contact-card h2 .outline-text {
-    -webkit-text-stroke: 2px #00ff9d;
 }
 
 .contact-card p {
@@ -460,17 +428,22 @@ body {
     font-size: 0.9rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
     border: 1px solid transparent;
     cursor: pointer;
-    background: #00ff9d;
-    color: #000;
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    border-radius: 4px;
 }
 
-.btn:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 5px 5px 0px #5200ff;
+.btn-primary {
+    background: #ffffff;
+    color: #000000;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    transform: translateY(-3px);
 }
 
 .btn-ghost {
@@ -480,22 +453,22 @@ body {
 }
 
 .btn-ghost:hover {
-    background: #5200ff;
-    color: #fff;
-    border-color: #5200ff;
-    box-shadow: 5px 5px 0px #00ff9d;
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    transform: translateY(-3px);
 }
 
 .btn-discord {
-    background: #00ff9d;
-    color: #000;
-    border: 1px solid #00ff9d;
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
 }
 
 .btn-discord:hover {
-    background: #fff;
-    color: #000;
-    box-shadow: 5px 5px 0px #5200ff;
+    background: transparent;
+    color: #ffffff;
+    transform: translateY(-3px);
 }
 
 /* ================= FULLSCREEN LIGHTBOX ================= */
@@ -528,8 +501,9 @@ body {
     max-width: 85%;
     max-height: 80vh;
     object-fit: contain;
-    border: 2px solid rgba(0, 255, 157, 0.3);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 50px rgba(0, 255, 157, 0.1);
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
     animation: zoomIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -542,21 +516,21 @@ body {
     position: absolute;
     top: 30px;
     right: 40px;
-    color: #000;
+    color: #fff;
     font-size: 1rem;
     font-family: 'JetBrains Mono', monospace;
     font-weight: 700;
     cursor: pointer;
-    background: #00ff9d;
+    border: 1px solid #444;
     padding: 10px 20px;
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    border-radius: 4px;
     transition: all 0.3s ease;
     z-index: 5001;
 }
 
 .lightbox-close:hover {
     background: #fff;
-    box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+    color: #000;
 }
 
 .lightbox-controls {
@@ -567,21 +541,20 @@ body {
 }
 
 .lb-prev, .lb-next {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 255, 157, 0.3);
+    background: transparent;
+    border: 1px solid #444;
     color: #fff;
     font-size: 1.5rem;
     padding: 10px 25px;
     cursor: pointer;
-    backdrop-filter: blur(10px);
+    border-radius: 4px;
     transition: all 0.3s ease;
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }
 
 .lb-prev:hover, .lb-next:hover {
-    background: #00ff9d;
+    background: #fff;
     color: #000;
-    box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+    border-color: #fff;
 }
 
 .lightbox-hint {
@@ -598,7 +571,7 @@ body {
 footer {
     text-align: center;
     padding: 40px;
-    border-top: 1px solid rgba(0, 255, 157, 0.1);
+    border-top: 1px solid #1a1a1a;
     color: #555;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
@@ -608,7 +581,7 @@ footer {
     position: relative;
     z-index: 2;
     background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
 }
 
 /* ================= ANIMATION CLASSES ================= */
@@ -647,10 +620,6 @@ footer {
         font-size: 3.5rem;
     }
     .section-title {
-        font-size: 2.5rem;
-    }
-    .hero-content p {
-        border-left: none;
-        padding-left: 0;
+        font-size: 2rem;
     }
 }
